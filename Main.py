@@ -31,10 +31,10 @@ def output(knapsack_size, n_items, weight_items, value_items):
     print("Optimal Solution: ")
     print(optimal_solution)
     print("My algorithm solution: ")
-    # print(my_solution)
-    # for i in best_gene:
-    #     if i:
-    #         print(weight_items[i] + " " + value_items[i])
+    print(my_solution)
+    for i in best_gene:
+        if i:
+            print(weight_items[i] + " " + value_items[i])
 
 
 if __name__ == '__main__':
