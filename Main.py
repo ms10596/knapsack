@@ -1,5 +1,5 @@
 import genetic
-import backtracking
+from Item import Item
 
 
 def input_file():
@@ -7,31 +7,27 @@ def input_file():
     n_test_cases = int(f.readline())
     for i in range(n_test_cases):
         n_items = int(f.readline())
-        print(n_items+1)
+        # print(n_items+1)
         knapsack_size = int(f.readline())
-        weight_items = []
-        value_items = []
+        items = []
         for j in range(n_items):
             line = list(map(int, f.readline().split()))
-            weight_items.append(line[0])
-            value_items.append(line[1])
-        print("Case: " + str(i))
-        # print (weight_items)
-        # print (value_items)
-        output(knapsack_size, n_items, weight_items, value_items)
+            items.append(Item(line[0], line[1]))
+        print("Case: " + str(i+1))
+        output(knapsack_size, items)
 
 
-def output(knapsack_size, n_items, weight_items, value_items):
-    my_solution, best_gene = genetic.knapsack(knapsack_size, weight_items, value_items, n_items)
+def output(knapsack_size, items):
+    my_solution, best_gene = genetic.knapsack(knapsack_size, items)
     # print(best_gene)
-    optimal_solution = backtracking.knapsack(knapsack_size, weight_items, value_items, n_items)
+    optimal_solution = 72
     print("Optimal Solution: ")
     print(optimal_solution)
     print("My algorithm solution: ")
     print(my_solution)
     for i in range(len(best_gene)):
         if i:
-            print(str(weight_items[i]) + " " + str(value_items[i]))
+            print(items[i])
 
 
 if __name__ == '__main__':
