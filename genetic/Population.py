@@ -31,7 +31,7 @@ class Population:
         j = 0
         for i in self.chromosomes:
             j += i.get_fitness()
-            if lucky < j:
+            if lucky <= j:
                 return i
 
     def start_selection_phase(self):
@@ -46,10 +46,3 @@ class Population:
 
     def __str__(self) -> str:
         return "".join([str(i) for i in self.chromosomes])
-
-
-
-
-if __name__ == '__main__':
-    a = Population(4, 2)
-    print(a)

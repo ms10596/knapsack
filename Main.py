@@ -1,8 +1,10 @@
-import genetic
+from genetic import knapsack
 from Item import Item
-from genetic.Chromosome import Chromosome
 
-def input_file():
+
+
+def inputs():
+    my_answers = []
     f = open("input.txt", "r")
     n_test_cases = int(f.readline())
     for i in range(n_test_cases):
@@ -13,20 +15,22 @@ def input_file():
         for j in range(n_items):
             line = list(map(int, f.readline().split()))
             items.append(Item(line[0], line[1]))
-        print("Case: " + str(i+1))
-        output(knapsack_size, items)
+        my_answers.append(knapsack(knapsack_size, items))
+    return my_answers
 
 
-def output(knapsack_size, items):
-    best_chromosome = genetic.knapsack(knapsack_size, items)
-    # print(best_gene)
-    optimal_solution = 72
-    print("Optimal Solution: ")
-    print(optimal_solution)
-    print("My algorithm solution: ")
-    print(best_chromosome.get_fitness())
-    best_chromosome.print_items()
+def answers():
+    f = open("output.txt", "r")
+    return list(map(int, f.read().split()))
 
 
 if __name__ == '__main__':
-    input_file()
+    right_answers = answers()
+    my_answers = inputs()
+    correct_cnt = 0
+    for i in range(len(my_answers)):
+        print("Right answer:", right_answers[i], "My answer:", my_answers[i].get_fitness())
+        if right_answers[i] == my_answers[i].get_fitness():
+            correct_cnt += 1
+        # my_answers[i].print_items()
+    print(correct_cnt, "out of", len(my_answers), "correct", correct_cnt/len(my_answers) * 100, "%")

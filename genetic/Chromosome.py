@@ -43,11 +43,6 @@ class Chromosome:
                 self.flip(i)
         self.get_fitness()
 
-
-
-    def __str__(self) -> str:
-        return "".join(str(self.representation))
-
     def flip(self, i):
         self.representation[i] = int(not self.representation[i])
 
@@ -57,11 +52,5 @@ class Chromosome:
             if self.representation[i]:
                 print(self.items[i])
 
-
-
-
-
-
-
-
-
+    def __str__(self) -> str:
+        return "".join(str(self.representation))
