@@ -29,8 +29,11 @@ if __name__ == '__main__':
     my_answers = inputs()
     correct_cnt = 0
     for i in range(len(my_answers)):
-        print("Right answer:", right_answers[i], "My answer:", my_answers[i].get_fitness())
+        print("Right answer:", right_answers[i], "My answer:", my_answers[i].get_fitness(), end="")
         if right_answers[i] == my_answers[i].get_fitness():
             correct_cnt += 1
+            print("👍")
+        else:
+            print()
         # my_answers[i].print_items()
     print(correct_cnt, "out of", len(my_answers), "correct", correct_cnt/len(my_answers) * 100, "%")

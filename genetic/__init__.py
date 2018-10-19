@@ -1,9 +1,9 @@
 from genetic.Population import Population
 
-max_iterations = 10
-p_crossover = 0.5
-p_mutation = 0.01
-population_size = 1000
+max_iterations = 1000
+p_crossover = 0.7
+p_mutation = 0.1
+population_size = 200
 
 
 def knapsack(knapsack_size, items):
