@@ -26,7 +26,7 @@ class Population:
         return total
 
     def get_best_chromosome(self):
-        total_fitness = sum([i.get_fitness for i in self.chromosomes])
+        total_fitness = sum([i.get_fitness() for i in self.chromosomes])
         lucky = random.uniform(0, total_fitness)
         j = 0
         for i in self.chromosomes:
@@ -38,8 +38,11 @@ class Population:
         self.best_chromosome = self.get_best_chromosome()
         self.second_best_chromosome = self.get_best_chromosome()
 
-    def start_crossover_phase(self):
-        self.best_chromosome.crossover(self.second_best_chromosome)
+    def start_crossover_phase(self, p_crossover):
+        self.best_chromosome.crossover(self.second_best_chromosome, p_crossover)
+
+    def start_mutation_phase(self, p_mutation):
+        [i.mutate(p_mutation) for i in self.chromosomes]
 
     def __str__(self) -> str:
         return "".join([str(i) for i in self.chromosomes])

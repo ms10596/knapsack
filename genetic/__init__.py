@@ -1,16 +1,15 @@
-from genetic.initialize import initiate
-from genetic.selection import get_best_2_genes
-from genetic.crossover import mate
-from genetic.mutation import mutate
-from genetic.fitness import fitness
 from genetic.Population import Population
 
 max_iterations = 1
-population_size = 10
+p_crossover = 0.5
+p_mutation = 0.01
+population_size = 4
+
+
 def knapsack(knapsack_size, items):
     p = Population(population_size, knapsack_size, items)
-    p.start_selection_phase()
-    p.start_crossover_phase()
-
-
-    return "", ""
+    for i in range(max_iterations):
+        p.start_selection_phase()
+        p.start_crossover_phase(p_crossover)
+        p.start_mutation_phase(p_mutation)
+    return p.best_chromosome

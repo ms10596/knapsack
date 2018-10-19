@@ -1,6 +1,6 @@
 import genetic
 from Item import Item
-
+from genetic.Chromosome import Chromosome
 
 def input_file():
     f = open("input.txt", "r")
@@ -18,16 +18,14 @@ def input_file():
 
 
 def output(knapsack_size, items):
-    my_solution, best_gene = genetic.knapsack(knapsack_size, items)
+    best_chromosome = genetic.knapsack(knapsack_size, items)
     # print(best_gene)
     optimal_solution = 72
     print("Optimal Solution: ")
     print(optimal_solution)
     print("My algorithm solution: ")
-    print(my_solution)
-    for i in range(len(best_gene)):
-        if i:
-            print(items[i])
+    print(best_chromosome.get_fitness())
+    best_chromosome.print_items()
 
 
 if __name__ == '__main__':
