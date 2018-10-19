@@ -23,18 +23,15 @@ def input_file():
 
 def output(knapsack_size, n_items, weight_items, value_items):
     my_solution, best_gene = genetic.knapsack(knapsack_size, weight_items, value_items, n_items)
-    # print(knapsack_size)
-    # print(n_items)
-    # print(weight_items)
-    # print(value_items)
+    # print(best_gene)
     optimal_solution = backtracking.knapsack(knapsack_size, weight_items, value_items, n_items)
     print("Optimal Solution: ")
     print(optimal_solution)
     print("My algorithm solution: ")
     print(my_solution)
-    for i in best_gene:
+    for i in range(len(best_gene)):
         if i:
-            print(weight_items[i] + " " + value_items[i])
+            print(str(weight_items[i]) + " " + str(value_items[i]))
 
 
 if __name__ == '__main__':

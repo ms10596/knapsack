@@ -11,7 +11,7 @@ def knapsack(knapsack_size, weight_items, value_items, n_items):
         population = initiate(n_items, weight_items, knapsack_size)
         # print(population)
         best_gene, second_best_gene = get_best_2_genes(value_items, population)
-        # print (first_gene, second_gene)
+        print (best_gene, second_best_gene)
         # first_offspring, second_offspring = mate(first_gene, second_gene)
         # first_offspring, second_offspring = mutate(first_offspring, second_offspring)
         # population.append(first_offspring)
