@@ -19,14 +19,11 @@ class Population:
         while len(self.chromosomes) < self.size:
             self.chromosomes.append(Chromosome(self.knapsack_size, self.items))
 
-    def get_total_fitness(self):
-        total = 0
-        for i in self.chromosomes:
-            total += i.value
-        return total
+    def get_all_fitness(self):
+        return sum([i.get_fitness() for i in self.chromosomes])
 
     def get_best_chromosome(self):
-        total_fitness = sum([i.get_fitness() for i in self.chromosomes])
+        total_fitness = self.get_all_fitness()
         lucky = random.uniform(0, total_fitness)
         j = 0
         for i in self.chromosomes:
@@ -42,7 +39,8 @@ class Population:
         self.best_chromosome.crossover(self.second_best_chromosome, p_crossover)
 
     def start_mutation_phase(self, p_mutation):
-        [i.mutate(p_mutation) for i in self.chromosomes]
+        self.best_chromosome.mutate(p_mutation)
+        self.second_best_chromosome.mutate(p_mutation)
 
     def __str__(self) -> str:
         return "".join([str(i) for i in self.chromosomes])
