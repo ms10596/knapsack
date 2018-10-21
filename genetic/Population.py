@@ -4,6 +4,7 @@ from genetic.Chromosome import Chromosome
 
 class Population:
     def __init__(self, size, knapsack_size, items):
+        random.seed(1)
         self.size = size
         self.chromosome_length = len(items)
         self.chromosomes = []
@@ -39,8 +40,11 @@ class Population:
         self.best_chromosome.crossover(self.second_best_chromosome, p_crossover)
 
     def start_mutation_phase(self, p_mutation):
-        self.best_chromosome.mutate(p_mutation)
-        self.second_best_chromosome.mutate(p_mutation)
+        [i.mutate(p_mutation) for i in self.chromosomes]
+
+    def start_refinement_phase(self):
+        [i.refine() for i in self.chromosomes]
+
 
     def __str__(self) -> str:
         return "".join([str(i) for i in self.chromosomes])
